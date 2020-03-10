@@ -89,7 +89,7 @@ void viewNode(struct DoublyLinkListNode *head_pointer, int position){
     for(int i = 0; i < position; i++){
         before = before->next;
     }
-    printf("\nElement in position %d is %d, %p, %p", position, before->elem, before->prev, before->next); 
+    printf("\nNode in position %d is %d, %p, %p", position, before->elem, before->prev, before->next); 
 }
 
 struct DoublyLinkListNode* getNode(struct DoublyLinkListNode *head_pointer, int position){

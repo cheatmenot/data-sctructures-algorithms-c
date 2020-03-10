@@ -1,0 +1,9 @@
+.idea
+**/target
+**/.classpath
+**/.project
+**/.settings
+**/.idea
+**/logs
+**/*.exe
+dt-test-scala.iml
