@@ -64,4 +64,20 @@ void printTreeFromRootToLeaf(struct BinaryTreeNode *node)
     }
 }
 
+int height(struct BinaryTreeNode *root_node)
+{
+    if (root_node == NULL)
+        return 0;
+    else
+    {
+        int leftHeight = height(root_node->left);
+        int rightHeight = height(root_node->right);
+
+        if (leftHeight > rightHeight)
+            return leftHeight + 1;
+        else
+            return rightHeight + 1;
+    }
+}
+
 #endif

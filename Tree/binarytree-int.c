@@ -107,7 +107,12 @@ void removeNodeUsingPostOrderTraversal(struct BinaryTreeNode *internal_node_poin
 
 void removeNode(struct BinaryTreeNode **root_pointer, struct BinaryTreeNode *node_pointer)
 {
-    if (node_pointer == node_pointer->parent->left)
+    if (node_pointer == *root_pointer)
+    {
+        removeNodeUsingPostOrderTraversal(node_pointer);
+        *root_pointer = NULL;
+    }
+    else if (node_pointer == node_pointer->parent->left)
     {
         node_pointer->parent->left = NULL;
         removeNodeUsingPostOrderTraversal(node_pointer);
@@ -116,11 +121,6 @@ void removeNode(struct BinaryTreeNode **root_pointer, struct BinaryTreeNode *nod
     {
         node_pointer->parent->right = NULL;
         removeNodeUsingPostOrderTraversal(node_pointer);
-    }
-    else
-    {
-        removeNodeUsingPostOrderTraversal(node_pointer);
-        *root_pointer = NULL;
     }
 }
 
@@ -131,6 +131,7 @@ int main()
     printf("//newRootNode(5)\n");
     newRootNode(&binary_tree, 5);
     printTreeFromRootToLeaf(binary_tree);
+    printf("//Height is %d\n", height(binary_tree));
     printf("//newLeftNode(4)\n");
     newLeftNode(&binary_tree, binary_tree, 4);
     printTreeFromRootToLeaf(binary_tree);
@@ -171,6 +172,7 @@ int main()
     inOrderBinaryTraversal(binary_tree);
     printf("\n//Print Befor Removing\n");
     printTreeFromRootToLeaf(binary_tree);
+    printf("//Height is %d\n", height(binary_tree));
     printf("//removeNode left subtree\n");
     removeNode(&binary_tree, binary_tree->left);
     printTreeFromRootToLeaf(binary_tree);
