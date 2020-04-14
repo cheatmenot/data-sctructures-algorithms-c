@@ -25,6 +25,21 @@ int getRight(int current_index)
     return (2 * (current_index) + 2);
 }
 
+void peek(struct ArrayCompleteTree *array_complete_tree)
+{
+    int size = array_complete_tree->size;
+    int *intArray = array_complete_tree->heapArray;
+
+    if(array_complete_tree == NULL)
+    {
+        printf("Heap is empty!\n");
+    }
+    else 
+    {
+        printf("Highest Priority element is %d\n", intArray[0]);
+    }
+}
+
 void insert(struct ArrayCompleteTree *array_complete_tree, int elem)
 {
     int size = array_complete_tree->size;
@@ -63,15 +78,22 @@ void heapify(struct ArrayCompleteTree *array_complete_tree, int index)
 
 void removeMin(struct ArrayCompleteTree *array_complete_tree)
 {
-    int size = array_complete_tree->size;
-    int *intArray = array_complete_tree->heapArray;
+    if(array_complete_tree->size <= 0){
+        printf("Heap is empty!\n");
+    }
+    else 
+    {
+        int size = array_complete_tree->size;
+        int *intArray = array_complete_tree->heapArray;
 
-    int last_element = intArray[size - 1];
-    intArray[0] = last_element;
+        int last_element = intArray[size - 1];
+        intArray[0] = last_element;
 
-    heapify(array_complete_tree, 0);
+        heapify(array_complete_tree, 0);
 
-    array_complete_tree->size--;
+        array_complete_tree->size--;
+    }
+    
 }
 
 void printArray(struct ArrayCompleteTree *array_complete_tree)
@@ -120,4 +142,11 @@ int main()
     printArray(&array_complete_tree);
     removeMin(&array_complete_tree);
     printArray(&array_complete_tree);
+    peek(&array_complete_tree);
+    removeMin(&array_complete_tree);
+    printArray(&array_complete_tree);
+    removeMin(&array_complete_tree);
+    printArray(&array_complete_tree);
+    removeMin(&array_complete_tree);
+    removeMin(&array_complete_tree);
 }
