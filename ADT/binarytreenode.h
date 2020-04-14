@@ -80,4 +80,51 @@ int height(struct BinaryTreeNode *root_node)
     }
 }
 
+//   b               d
+//  / \      <-     / \
+// a   d     ->    b   e
+//    /  \        / \
+//   c    e      a   c
+struct BinaryTreeNode *rotateLeft(struct BinaryTreeNode *b)
+{
+    struct BinaryTreeNode *d = b->right;
+    if (d->left != NULL)
+    {
+        struct BinaryTreeNode *c = d->left;
+        b->right = c;
+        c->parent = b;
+        d->left = b;
+        b->parent = d;
+    }
+    else
+    {
+        d->left = b;
+        b->right = NULL;
+        b->parent = d;
+    }
+
+    return d;
+}
+
+struct BinaryTreeNode *rotateRight(struct BinaryTreeNode *d)
+{
+    struct BinaryTreeNode *b = d->left;
+    if (b->right != NULL)
+    {
+        struct BinaryTreeNode *c = b->right;
+        d->left = c;
+        c->parent = d;
+        b->right = d;
+        d->parent = b;
+    }
+    else
+    {
+        b->right = d;
+        d->left = NULL;
+        d->parent = b;
+    }
+
+    return b;
+}
+
 #endif
